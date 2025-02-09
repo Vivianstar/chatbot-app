@@ -87,12 +87,35 @@ hypercorn app:app --bind 127.0.0.1:8000
 hypercorn app:app --bind 127.0.0.1:8000
 ```
 
-3. For Databricks-hosted application:
+3. For Databricks Apps deployment:
+
+   a. Install the Databricks CLI:
+   ```bash
+   brew install databricks
+   ```
+
+   b. Create the app in your workspace:
+   ```bash
+   databricks apps create chat-app
+   ```
+
+   c. Sync your local files to Databricks workspace:
+   ```bash
+   # Add node_modules/ and venv/ to .gitignore first if not already present
+   databricks sync --watch . /Workspace/Users/<your-email>/chat-app
+   ```
+
+   d. Deploy the app:
+   ```bash
+   databricks apps deploy chat-app --source-code-path /Workspace/Users/<your-email>/chat-app
+   ```
+
    The application will be available at your Databricks Apps URL:
    - Production URL: https://chat-app-[id].cloud.databricksapps.com
 
 
-The application includes built-in load testing capabilities. To run a load test:
+The application includes built-in load testing capabilities. 
+To run a load test:
 
 ### Local Testing
 ```bash
