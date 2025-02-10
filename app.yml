@@ -6,6 +6,6 @@ command:
 
 env:
   - name: "SERVING_ENDPOINT_NAME"
-    value: "databricks-meta-llama-3-3-70b-instruct"
+    valueFrom: "serving_endpoint"
   - name: "DATABRICKS_TOKEN"
     value: "your-databricks-token"

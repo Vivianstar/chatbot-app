@@ -10,7 +10,6 @@ from load_tester import router as load_test_router
 
 load_dotenv()
 
-# Set up logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -46,12 +45,9 @@ if not SERVING_ENDPOINT_NAME:
     raise ValueError("SERVING_ENDPOINT_NAME environment variable is not set")
 
 
-# Model for the request body
 class ChatRequest(BaseModel):
     message: str
 
-
-# Simplified response model
 class ChatResponse(BaseModel):
     content: str
 
@@ -67,7 +63,8 @@ async def chat_with_llm(request: ChatRequest):
     }
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.post(SERVING_ENDPOINT_NAME, json=payload, headers=headers, timeout=500.0)
+            request_url = f"https://{os.getenv('DATABRICKS_HOST')}/serving-endpoints/{SERVING_ENDPOINT_NAME}/invocations"
+            response = await client.post(request_url, json=payload, headers=headers, timeout=500.0)
             response.raise_for_status()
             response_data = response.json()
             content = response_data['choices'][0]['message']['content']
