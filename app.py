@@ -1,21 +1,14 @@
 import logging
-from typing import Annotated, Any
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import httpx
 import os
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from databricks.sdk import WorkspaceClient
-from databricks.sdk.service.serving import (
-    ChatMessage,
-    ChatMessageRole,
-)
 from dotenv import load_dotenv
 from load_tester import router as load_test_router
 
 load_dotenv()
-
 
 # Set up logging
 logging.basicConfig(
@@ -67,7 +60,7 @@ class ChatResponse(BaseModel):
 async def chat_with_llm(request: ChatRequest):
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.getenv('API_KEY')}"
+        "Authorization": f"Bearer {os.getenv('DATABRICKS_TOKEN')}"
     }
     payload = {
         "messages": [{"role": "user", "content": request.message}]

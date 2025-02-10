@@ -7,7 +7,4 @@ aiofiles
 hypercorn
 locust
 databricks-sdk
-pytest
-pytest-asyncio
 logging
-statistics

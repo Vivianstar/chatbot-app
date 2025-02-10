@@ -8,4 +8,4 @@ env:
   - name: "SERVING_ENDPOINT_NAME"
     value: "databricks-meta-llama-3-3-70b-instruct"
   - name: "DATABRICKS_TOKEN"
-    valueFrom: "databricks-token"
+    value: "your-databricks-token"
