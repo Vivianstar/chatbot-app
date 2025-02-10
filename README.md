@@ -167,6 +167,7 @@ chatbot-app/
 ├── client/            # React frontend
 │   ├── src/          # Source code
 │   ├── public/       # Static assets
+│   ├── build/        # # Static frontend files
 │   └── package.json  # Node.js dependencies
 └── .env              # Environment variables
 ```
