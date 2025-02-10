@@ -40,14 +40,6 @@ source venv/bin/activate  # On Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables:
-Create a `.env` file in the root directory with:
-
-```bash
-SERVING_ENDPOINT_NAME=your_databricks_endpoint
-API_KEY=your_api_key
-```
-
 ## Building the Frontend
 
 1. Navigate to the client directory:
@@ -99,13 +91,34 @@ hypercorn app:app --bind 127.0.0.1:8000
    databricks apps create chat-app
    ```
 
-   c. Sync your local files to Databricks workspace:
+
+    c. Create an `app.yaml` file in the root directory:
+
+    ```yaml
+    command:
+    - "hypercorn"
+    - "app:app"
+    - "--bind"
+    - "127.0.0.1:8000"
+
+    env:
+    - name: "SERVING_ENDPOINT_NAME"
+        valueFrom: "serving_endpoint"
+    ```
+
+    The `app.yaml` configuration uses Hypercorn as the ASGI server to run your FastAPI application. 
+    The environment section defines `SERVING_ENDPOINT_NAME` which is configured (`serving_endpoint`) through apps creation in Databricks, securly storing and accessing sensitive values.
+
+    For detials on how to create an app in Databricks, please refer to the [Databricks Apps Documentation](https://docs.databricks.com/en/dev-tools/databricks-apps/configuration.html).
+
+
+   d. Sync your local files to Databricks workspace:
    ```bash
    # Add node_modules/ and venv/ to .gitignore first if not already present
    databricks sync --watch . /Workspace/Users/<your-email>/chat-app
    ```
 
-   d. Deploy the app:
+   e. Deploy the app:
    ```bash
    databricks apps deploy chat-app --source-code-path /Workspace/Users/<your-email>/chat-app
    ```
