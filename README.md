@@ -137,7 +137,7 @@ curl "http://localhost:8000/api/load-test?users=200&spawn_rate=2&test_time=10"
 
 ### Databricks Deployed App Testing
 ![load-test](./client/public/load-testing.png)
-*Load testing in the Databricks Apps UI*
+*Run load tests in the Databricks Apps UI*
 
 Parameters:
 - `users`: Number of concurrent users (default: 10)
