@@ -130,7 +130,7 @@ hypercorn app:app --bind 127.0.0.1:8000
 The application includes built-in load testing capabilities. 
 To run a load test:
 
-### Local Testing
+### Local App Testing
 ```bash
 curl "http://localhost:8000/api/load-test?users=200&spawn_rate=2&test_time=10"
 ```
