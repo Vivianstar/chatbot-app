@@ -136,9 +136,8 @@ curl "http://localhost:8000/api/load-test?users=200&spawn_rate=2&test_time=10"
 ```
 
 ### Databricks Deployed App Testing
-```bash
-curl "https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=200&spawn_rate=20&test_time=30"
-```
+![load-test](./client/public/load-testing.png)
+*Load testing in the Databricks Apps UI*
 
 Parameters:
 - `users`: Number of concurrent users (default: 10)
@@ -159,16 +158,16 @@ Parameters:
 
 
 3. **Testing Scenarios**
-   ```bash
+ 
    # Light load test
-   curl "https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=200&spawn_rate=10&test_time=30"
+   https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=200&spawn_rate=10&test_time=30
 
    # Medium load test
-   curl "https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=1000&spawn_rate=100&test_time=30"
+   https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=1000&spawn_rate=100&test_time=30
 
    # Heavy load test
-    curl "https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=10000&spawn_rate=1000&test_time=30"
-   ```
+    https://chat-app-[id].cloud.databricksapps.com/api/load-test?users=10000&spawn_rate=1000&test_time=30
+   
 
 ## Project Structure
 
